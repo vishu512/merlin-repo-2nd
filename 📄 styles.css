@@ -1,0 +1,38 @@
+:root {
+    --primary-bg: #3C3C3C;
+    --secondary-bg: #545454;
+    --text-color: #E4E4E5;
+    --accent-color: #BEBEBE;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.home-page, .profile-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.stat-box {
+    background-color: var(--secondary-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
