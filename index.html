@@ -3,64 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merlin Platform</title>
+    <title>NetFit Pro Platform</title>
     
-    <!-- DIRECT CSS LINK -->
+    <!-- Essential Meta Tags -->
+    <meta name="description" content="Decentralized Fitness Rewards Platform">
+    <meta name="keywords" content="fitness, blockchain, rewards, web3">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Web3 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
 </head>
 <body>
-    <!-- Primary Application Container -->
-    <div id="app">
-        <!-- Fallback Content -->
-        <div class="loading-screen">
-            <h1>Merlin Platform</h1>
-            <p>Loading... Please wait</p>
+    <!-- Navigation Header -->
+    <header id="main-header"></header>
+
+    <!-- Main Application Container -->
+    <main id="app-container">
+        <!-- Dynamic Content Loads Here -->
+        <div id="loading-overlay" class="loading-screen">
+            <div class="spinner"></div>
+            <p>Initializing NetFit Pro...</p>
         </div>
-    </div>
+    </main>
 
-    <!-- ESSENTIAL SCRIPTS -->
-    <script src="wallet.js"></script>
-    <script src="interactions.js"></script>
+    <!-- Footer -->
+    <footer id="main-footer"></footer>
 
-    <!-- PAGE SCRIPTS -->
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <!-- Web3 and Core Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="scripts/wallet.js"></script>
+    <script src="scripts/interactions.js"></script>
+    <script src="scripts/router.js"></script>
+
+    <!-- Page Scripts -->
     <script src="pages/home.js"></script>
-    
-    <script>
-        // ENHANCED PAGE INITIALIZATION
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("Page Loaded Successfully");
-            
-            // Immediate Rendering
-            const app = document.getElementById('app');
-            app.innerHTML = `
-                <h1>Welcome to Merlin Platform</h1>
-                <button onclick="connectWallet()">Connect Wallet</button>
-            `;
-        });
+    <script src="pages/profile.js"></script>
+    <script src="pages/discover.js"></script>
+    <script src="pages/challenges.js"></script>
 
-        // SIMPLE WALLET CONNECTION
-        function connectWallet() {
-            try {
-                // Basic wallet connection logic
-                if (window.ethereum) {
-                    window.ethereum.request({ method: 'eth_requestAccounts' })
-                        .then(accounts => {
-                            console.log("Connected Account:", accounts[0]);
-                            alert("Wallet Connected Successfully!");
-                        })
-                        .catch(error => {
-                            console.error("Wallet Connection Error:", error);
-                        });
-                } else {
-                    alert("MetaMask not detected!");
-                }
-            } catch (error) {
-                console.error("Connection Error:", error);
-            }
-        }
+    <!-- Component Scripts -->
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/modals.js"></script>
+
+    <script>
+        // Application Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Components
+            Header.render();
+            Footer.render();
+
+            // Initialize Router
+            Router.init();
+        });
     </script>
 </body>
 </html>
