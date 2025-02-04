@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetFit Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Dynamic content will load here -->
+    </div>
+
+    <!-- Main Scripts -->
+    <script src="wallet.js"></script>
+    <script src="interactions.js"></script>
+    
+    <!-- Page Scripts -->
+    <script src="pages/home.js"></script>
+    <script src="pages/profile.js"></script>
+    <script src="pages/discover.js"></script>
+    <script src="pages/streak.js"></script>
+
+    <!-- Component Scripts -->
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/modals.js"></script>
+
+    <script>
+        // Main Application Router
+        function loadPage(pageName) {
+            const app = document.getElementById('app');
+            switch(pageName) {
+                case 'home':
+                    app.innerHTML = HomePage.render();
+                    break;
+                case 'profile':
+                    app.innerHTML = ProfilePage.render();
+                    break;
+                case 'discover':
+                    app.innerHTML = DiscoverPage.render();
+                    break;
+                case 'streak':
+                    app.innerHTML = StreakPage.render();
+                    break;
+                default:
+                    app.innerHTML = HomePage.render();
+            }
+        }
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage('home');
+        });
+    </script>
+</body>
+</html>
