@@ -1,33 +1,50 @@
 const Modals = {
-    // ... previous methods ...
-
-    showProjectJoinModal(project) {
+    showAchievementModal(achievement) {
         const modalHTML = `
-            <div class="modal project-join-modal">
+            <div class="achievement-modal">
                 <div class="modal-content">
-                    <h2>Project Joined: ${project.name}</h2>
-                    <div class="project-rewards">
-                        <h3>Rewards Earned:</h3>
-                        <p>XP: ${project.xpReward}</p>
-                        <p>Neft Coins: ${project.neftReward}</p>
+                    <h2>${achievement.title}</h2>
+                    <p>${achievement.description}</p>
+                    <div class="achievement-rewards">
+                        <span>🏆 XP Bonus Earned</span>
+                        <span>🔥 Neft Coins Bonus</span>
                     </div>
-                    <div class="project-next-steps">
-                        <h3>Next Steps:</h3>
-                        <ul>
-                            ${project.requirements.map(req => `<li>${req}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <button class="close-modal" onclick="Modals.closeModal()">Close</button>
+                    <button onclick="Modals.closeModal()">Close</button>
                 </div>
             </div>
         `;
-
+        
         this.showModal(modalHTML);
     },
 
-    showModal(html) {
-        const modalContainer = document.createElement('div');
-        modalContainer.innerHTML = html;
-        document.body.appendChild(modalContainer.firstChild);
+    showErrorModal(message) {
+        const modalHTML = `
+            <div class="error-modal">
+                <div class="modal-content">
+                    <h2>⚠️ Error</h2>
+                    <p>${message}</p>
+                    <button onclick="Modals.closeModal()">Okay</button>
+                </div>
+            </div>
+        `;
+        
+        this.showModal(modalHTML);
+    },
+
+    showWalletInstallModal() {
+        const modalHTML = `
+            <div class="wallet-install-modal">
+                <div class="modal-content">
+                    <h2>Wallet Not Found</h2>
+                    <p>Please install MetaMask to continue</p>
+                    <a href="https://metamask.io/download.html" target="_blank">
+                        Install MetaMask
+                    </a>
+                    <button onclick="Modals.closeModal()">Close</button>
+                </div>
+            </div>
+        `;
+        
+        this.showModal(modalHTML);
     }
 };
