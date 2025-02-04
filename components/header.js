@@ -1,31 +1,18 @@
-const Header = {
-    render() {
-        return `
-            <header class="main-header">
-                <div class="logo">NetFit</div>
-                <nav class="main-nav">
-                    <ul>
-                        <li onclick="loadPage('home')">Home</li>
-                        <li onclick="loadPage('discover')">Discover</li>
-                        <li onclick="loadPage('streak')">Streak</li>
-                        <li onclick="loadPage('profile')">Profile</li>
-                    </ul>
-                </nav>
-                <div class="wallet-section">
-                    <button 
-                        id="wallet-connect-btn" 
-                        onclick="walletManager.connectMetaMask()">
-                        Connect Wallet
-                    </button>
-                </div>
-            </header>
-        `;
-    }
-};
+import { ConnectWallet } from "@thirdweb-dev/react";
+import { FaSearch } from "react-icons/fa";
 
-// Automatically inject header when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const headerContainer = document.createElement('div');
-    headerContainer.innerHTML = Header.render();
-    document.body.insertBefore(headerContainer.firstChild, document.body.firstChild);
-});
+export const Header = ({ isLoggedIn }) => {
+  return (
+    <header className="bg-gradient-dark p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-accent text-2xl font-bold">NEFTIT</h1>
+        
+        <nav className="flex gap-6 text-primary">
+          <button>Discover</button>
+          <button><FaSearch /></button>
+          {!isLoggedIn && <ConnectWallet />}
+        </nav>
+      </div>
+    </header>
+  );
+};
