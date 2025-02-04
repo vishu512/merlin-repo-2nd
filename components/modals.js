@@ -1,53 +1,33 @@
 const Modals = {
-    showWalletConnectModal() {
+    // ... previous methods ...
+
+    showProjectJoinModal(project) {
         const modalHTML = `
-            <div class="modal wallet-connect-modal">
+            <div class="modal project-join-modal">
                 <div class="modal-content">
-                    <h2>Connect Your Wallet</h2>
-                    <div class="wallet-options">
-                        <button onclick="walletManager.connectMetaMask()">MetaMask</button>
-                        <button onclick="walletManager.connectWalletConnect()">WalletConnect</button>
-                        <button onclick="walletManager.connectCoinbase()">Coinbase Wallet</button>
+                    <h2>Project Joined: ${project.name}</h2>
+                    <div class="project-rewards">
+                        <h3>Rewards Earned:</h3>
+                        <p>XP: ${project.xpReward}</p>
+                        <p>Neft Coins: ${project.neftReward}</p>
+                    </div>
+                    <div class="project-next-steps">
+                        <h3>Next Steps:</h3>
+                        <ul>
+                            ${project.requirements.map(req => `<li>${req}</li>`).join('')}
+                        </ul>
                     </div>
                     <button class="close-modal" onclick="Modals.closeModal()">Close</button>
                 </div>
             </div>
         `;
 
+        this.showModal(modalHTML);
+    },
+
+    showModal(html) {
         const modalContainer = document.createElement('div');
-        modalContainer.innerHTML = modalHTML;
+        modalContainer.innerHTML = html;
         document.body.appendChild(modalContainer.firstChild);
-    },
-
-    showReferralModal() {
-        const referralCode = netfitInteractions.generateReferralCode();
-        const modalHTML = `
-            <div class="modal referral-modal">
-                <div class="modal-content">
-                    <h2>Refer a Friend</h2>
-                    <p>Your Unique Referral Code:</p>
-                    <input type="text" value="${referralCode}" readonly>
-                    <button onclick="Modals.copyReferralCode('${referralCode}')">Copy Code</button>
-                    <button class="close-modal" onclick="Modals.closeModal()">Close</button>
-                </div>
-            </div>
-        `;
-
-        const modalContainer = document.createElement('div');
-        modalContainer.innerHTML = modalHTML;
-        document.body.appendChild(modalContainer.firstChild);
-    },
-
-    closeModal() {
-        const modal = document.querySelector('.modal');
-        if (modal) {
-            modal.remove();
-        }
-    },
-
-    copyReferralCode(code) {
-        navigator.clipboard.writeText(code).then(() => {
-            alert('Referral Code Copied!');
-        });
     }
 };
