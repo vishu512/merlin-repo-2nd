@@ -1,53 +1,110 @@
 :root {
-    --primary-bg: #3C3C3C;
-    --secondary-bg: #545454;
-    --text-color: #E4E4E5;
-    --accent-color: #BEBEBE;
+    --primary-bg: #2C3E50;
+    --secondary-bg: #34495E;
+    --text-color: #ECF0F1;
+    --accent-color: #3498DB;
+    --success-color: #2ECC71;
+    --danger-color: #E74C3C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--primary-bg);
     color: var(--text-color);
-    margin: 0;
-    padding: 0;
+    line-height: 1.6;
 }
 
-.home-page, .profile-page {
-    max-width: 800px;
+#app {
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;
 }
 
-button {
-    background-color: var(--accent-color);
-    color: var(--primary-bg);
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.stat-box {
+/* Responsive Navigation */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--secondary-bg);
     padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
-}
-.advanced-project {
-    border: 2px solid var(--accent-color);
-    transition: transform 0.3s ease;
 }
 
-.advanced-project:hover {
-    transform: scale(1.05);
+.main-nav ul {
+    display: flex;
+    list-style: none;
 }
 
-.project-difficulty {
-    padding: 5px;
+.main-nav ul li {
+    margin: 0 10px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
     background-color: var(--accent-color);
     color: white;
-    border-radius: 3px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980B9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-nav ul li {
+        margin: 10px 0;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
 }
