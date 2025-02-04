@@ -1,110 +1,30 @@
-:root {
-    --primary-bg: #2C3E50;
-    --secondary-bg: #34495E;
-    --text-color: #ECF0F1;
-    --accent-color: #3498DB;
-    --success-color: #2ECC71;
-    --danger-color: #E74C3C;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--primary-bg);
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-#app {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Responsive Navigation */
-.main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--secondary-bg);
-    padding: 15px;
-}
-
-.main-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-.main-nav ul li {
-    margin: 0 10px;
-}
-
-.main-nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.main-nav ul li a:hover {
-    color: var(--accent-color);
-}
-
-/* Button Styles */
-.btn {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #2980B9;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .main-header {
-        flex-direction: column;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .main-nav ul li {
-        margin: 10px 0;
-    }
-}
-
-/* Modal Styles */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
 }
 
-.modal-content {
-    background: var(--secondary-bg);
+#app {
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.loading-screen {
+    color: #333;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
