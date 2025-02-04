@@ -12,10 +12,10 @@
         <!-- Dynamic content will load here -->
     </div>
 
-    <!-- Main Scripts -->
+    <!-- Wallet and Interaction Scripts -->
     <script src="wallet.js"></script>
     <script src="interactions.js"></script>
-    
+
     <!-- Page Scripts -->
     <script src="pages/home.js"></script>
     <script src="pages/profile.js"></script>
@@ -30,29 +30,4 @@
     <script>
         // Main Application Router
         function loadPage(pageName) {
-            const app = document.getElementById('app');
-            switch(pageName) {
-                case 'home':
-                    app.innerHTML = HomePage.render();
-                    break;
-                case 'profile':
-                    app.innerHTML = ProfilePage.render();
-                    break;
-                case 'discover':
-                    app.innerHTML = DiscoverPage.render();
-                    break;
-                case 'streak':
-                    app.innerHTML = StreakPage.render();
-                    break;
-                default:
-                    app.innerHTML = HomePage.render();
-            }
-        }
-
-        // Initial Load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadPage('home');
-        });
-    </script>
-</body>
-</html>
+            const app = do
