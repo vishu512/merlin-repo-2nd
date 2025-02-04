@@ -1,95 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetFit Pro Platform</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="app">
-        <div id="loading-screen" class="loading-overlay">
-            <div class="spinner"></div>
-            <h2>NetFit Pro Initializing...</h2>
-        </div>
-    </div>
-
-    <!-- Core Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
-
-    <!-- Application Scripts -->
-    <script>
-        // GLOBAL APPLICATION CONFIGURATION
-        const APP_CONFIG = {
-            name: 'NetFit Pro',
-            version: '1.0.0',
-            debug: true
-        };
-
-        // COMPREHENSIVE LOGGING UTILITY
-        const Logger = {
-            log: (message) => {
-                if (APP_CONFIG.debug) {
-                    console.log(`[NetFit Pro] ${message}`);
-                }
-            },
-            error: (message) => {
-                console.error(`[NetFit Pro ERROR] ${message}`);
-            }
-        };
-
-        // MAIN APPLICATION INITIALIZER
-        class NetFitApp {
-            constructor() {
-                this.initializeApplication();
-            }
-
-            async initializeApplication() {
-                try {
-                    // Simulate initialization steps
-                    await this.checkEnvironment();
-                    await this.loadComponents();
-                    await this.renderMainInterface();
-                } catch (error) {
-                    this.handleInitializationError(error);
-                }
-            }
-
-            async checkEnvironment() {
-                Logger.log('Checking system compatibility...');
-                
-                // Web3 Provider Check
-                if (typeof window.ethereum === 'undefined') {
-                    throw new Error('Web3 Provider Not Detected');
-                }
-
-                // Browser Compatibility
-                const isModernBrowser = 'Promise' in window && 'fetch' in window;
-                if (!isModernBrowser) {
-                    throw new Error('Unsupported Browser');
-                }
-
-                Logger.log('Environment check complete');
-            }
-
-            async loadComponents() {
-                Logger.log('Loading application components...');
-                
-                // Simulate component loading
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-
-            async renderMainInterface() {
-                const appContainer = document.getElementById('app');
-                appContainer.innerHTML = `
-                    <header>
-                        <h1>NetFit Pro Platform</h1>
-                        <nav>
-                            <button id="connectWalletBtn">Connect Wallet</button>
-                        </nav>
-                    </header>
-                    <main id="mainContent">
-                        <section id="dashboardSection">
-                            <h2>Welcome to NetFit Pro</h2>
-                            <div id="walletStatus">
-                                <p
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEFTIT</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
