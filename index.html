@@ -3,79 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merlin Platform</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #app {
-            width: 100%;
-            max-width: 400px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .error {
-            color: red;
-            margin-top: 20px;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Neftit</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <h1>Merlin Platform</h1>
-        <div id="status">
-            <div class="spinner"></div>
-            <p>Initializing...</p>
-        </div>
-        <div id="error-container" class="error"></div>
-    </div>
+    <header>
+        <nav>
+            <div class="logo">Neftit</div>
+            <ul>
+                <li><a href="#">Discover</a></li>
+                <li><a href="#">Auctions</a></li>
+                <li><a href="#">Search Creators</a></li>
+            </ul>
+            <button id="login-btn">Login</button>
+        </nav>
+    </header>
 
-    <script>
-    // ULTRA-ROBUST INITIALIZATION MECHANISM
-    class MerlinPlatformInitializer {
-        constructor() {
-            this.initializationAttempts = 0;
-            this.maxAttempts = 3;
-            this.startInitialization();
-        }
+    <main>
+        <h1>Welcome to Neftit</h1>
+        <p>Your decentralized marketplace.</p>
+    </main>
 
-        // Comprehensive Initialization Method
-        startInitialization() {
-            try {
-                this.initializationAttempts++;
-                this.logMessage(`Initialization Attempt ${this.initializationAttempts}`);
-
-                // Validate Environment
-                t
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Login or Sign Up</h2>
+            <button>Continue with Google</button>
+            <button>Continue with Discord</button>
+            <button>Continue with Twitter</button>
+            <button>Continue with Telegram</button>
+            <p>OR</p>
+            <div class="wallets">
+                <button>Phantom</button>
+                <button>MetaMask</button>
+                <button>Keplr</button>
+                <button>Trust Wallet</button>
+                <button>All Wallets</button>
+            </div>
+            <
