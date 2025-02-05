@@ -52,3 +52,16 @@
     <!-- Main Application Container -->
     <div id="app">
         <!-- Navigation -->
+<script>
+    // COMPREHENSIVE DEBUGGING MECHANISM
+    window.addEventListener('error', function(event) {
+        console.error('Unhandled Error:', event.error);
+        alert('Page Loading Error: ' + event.message);
+    });
+
+    // Log All Critical Stages
+    console.log('Document Ready State:', document.readyState);
+    window.addEventListener('load', function() {
+        console.log('Window Loaded Successfully');
+    });
+</script>
