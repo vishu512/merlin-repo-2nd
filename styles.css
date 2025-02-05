@@ -21,21 +21,14 @@ body {
     line-height: 1.6;
 }
 
-/* Responsive Layout */
-#app-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 /* Loading Overlay */
-.loading-screen {
+.loading-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,11 +63,4 @@ body {
 
 .btn:hover {
     background-color: darken(var(--secondary-color), 10%);
-}
-
-/* Responsive Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
 }
