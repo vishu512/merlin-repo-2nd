@@ -4,41 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merlin Platform</title>
-    
-    <!-- Critical CSS -->
     <style>
-        * {
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            height: 100%;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
         }
         #app {
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             background-color: white;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             text-align: center;
-        }
-        .loading-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #2c3e50;
-            color: white;
         }
         .spinner {
             border: 4px solid #f3f3f3;
@@ -47,143 +31,51 @@
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+            margin: 20px auto;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .btn {
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+        button {
             background-color: #3498db;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer;
             margin-top: 15px;
-        }
-        #wallet-info {
-            margin-top: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Primary Application Container -->
     <div id="app">
-        <!-- Dynamic Content Area -->
-        <div id="content">
-            <!-- Initial Loading Screen -->
-            <div class="loading-screen">
-                <div class="spinner"></div>
-                <h2>Initializing Merlin Platform...</h2>
-            </div>
+        <h1>Merlin Platform</h1>
+        <div id="status">
+            <div class="spinner"></div>
+            <p>Initializing...</p>
         </div>
+        <div id="error-container" class="error"></div>
     </div>
 
-    <!-- Web3 Library -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
-
-    <!-- Comprehensive Application Script -->
     <script>
-    class MerlinPlatform {
+    // ULTRA-ROBUST INITIALIZATION MECHANISM
+    class MerlinPlatformInitializer {
         constructor() {
-            this.web3 = null;
-            this.account = null;
-            this.initializeApplication();
+            this.initializationAttempts = 0;
+            this.maxAttempts = 3;
+            this.startInitialization();
         }
 
-        async initializeApplication() {
+        // Comprehensive Initialization Method
+        startInitialization() {
             try {
-                // Comprehensive Initialization
-                this.checkEnvironment();
-                await this.setupWeb3();
-                this.renderInitialInterface();
-                this.setupEventListeners();
-            } catch (error) {
-                this.handleInitializationError(error);
-            }
-        }
+                this.initializationAttempts++;
+                this.logMessage(`Initialization Attempt ${this.initializationAttempts}`);
 
-        checkEnvironment() {
-            // Browser and Web3 Provider Check
-            if (typeof window.ethereum === 'undefined') {
-                throw new Error('Web3 Provider Not Detected. Please install MetaMask.');
-            }
-        }
-
-        async setupWeb3() {
-            try {
-                // Initialize Web3 Provider
-                this.web3 = new Web3(window.ethereum);
-            } catch (error) {
-                console.error('Web3 Setup Error:', error);
-                throw error;
-            }
-        }
-
-        renderInitialInterface() {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <div>
-                    <h1>Merlin Platform</h1>
-                    <p>Decentralized Application Platform</p>
-                    <button id="connect-wallet" class="btn">Connect Wallet</button>
-                    <div id="wallet-info"></div>
-                </div>
-            `;
-        }
-
-        setupEventListeners() {
-            const connectWalletBtn = document.getElementById('connect-wallet');
-            connectWalletBtn.addEventListener('click', () => this.connectWallet());
-        }
-
-        async connectWallet() {
-            try {
-                // Request Wallet Connection
-                const accounts = await window.ethereum.request({
-                    method: 'eth_requestAccounts'
-                });
-
-                this.account = accounts[0];
-                this.updateWalletInfo();
-            } catch (error) {
-                this.handleWalletConnectionError(error);
-            }
-        }
-
-        updateWalletInfo() {
-            const walletInfo = document.getElementById('wallet-info');
-            walletInfo.innerHTML = `
-                <p>Connected Wallet: ${this.formatAddress(this.account)}</p>
-                <button id="check-balance" class="btn">Check Balance</button>
-            `;
-
-            // Add Balance Check Listener
-            document.getElementById('check-balance').addEventListener('click', 
-                () => this.checkWalletBalance());
-        }
-
-        async checkWalletBalance() {
-            try {
-                const balanceWei = await this.web3.eth.getBalance(this.account);
-                const balanceEth = this.web3.utils.fromWei(balanceWei, 'ether');
-                
-                alert(`Your Balance: ${balanceEth} ETH`);
-            } catch (error) {
-                console.error('Balance Check Error:', error);
-                alert('Unable to retrieve balance');
-            }
-        }
-
-        formatAddress(address) {
-            return `${address.substring(0,6)}...${address.substring(address.length-4)}`;
-        }
-
-        handleInitializationError(error) {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <div>
-                    <h2>Initialization Error</h2>
-                    <p>${error.message}</p>
-                    <button onclick="window.location.reload()" class="btn">Retr
+                // Validate Environment
+                t
