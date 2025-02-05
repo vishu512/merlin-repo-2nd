@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neftit</title>
+    <title>Neftit - NFT Marketplace</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,22 +11,23 @@
         <nav>
             <div class="logo">Neftit</div>
             <ul>
-                <li><a href="#">Discover</a></li>
-                <li><a href="#">Auctions</a></li>
-                <li><a href="#">Search Creators</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search NFTs...">
+                <button>Search</button>
+            </div>
             <div class="profile-dropdown">
                 <div class="profile-header">
                     <span>vishal5120</span>
                     <button id="profile-btn">&#x25BC;</button>
                 </div>
                 <div class="profile-menu" style="display: none;">
-                    <p>3 Gems</p>
-                    <p>380 XPs</p>
-                    <a href="#">Leaderboard</a>
-                    <a href="#">Achievements</a>
-                    <a href="#">Refer and Earn</a>
-                    <a href="#">Saved</a>
+                    <a href="#">My NFTs</a>
+                    <a href="#">Settings</a>
                     <button id="logout-btn">Logout</button>
                 </div>
             </div>
@@ -35,11 +36,23 @@
     </header>
 
     <main>
-        <h1>Welcome to Neftit</h1>
-        <p>Your decentralized marketplace for NFTs.</p>
+        <h1>Explore and Collect Unique Digital Assets</h1>
+        <section class="nft-grid">
+            <!-- NFT Items Will Be Dynamically Added Here -->
+            <div class="nft-item">
+                <img src="path/to/nft-image.jpg" alt="NFT Title">
+                <h3>NFT Title</h3>
+                <p>Description of the NFT</p>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <!-- Repeat for multiple NFTs -->
+        </section>
     </main>
 
-    <!-- Login Modal -->
+    <footer>
+        <p>&copy; 2024 Neftit. All rights reserved.</p>
+    </footer>
+
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -56,13 +69,8 @@
                 <button>Trust Wallet</button>
                 <button>All Wallets</button>
             </div>
-            <p>By logging in, you agree to our <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a>.</p>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Neftit. All rights reserved.</p>
-    </footer>
 
     <script src="scripts/modal.js"></script>
 </body>
