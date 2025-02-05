@@ -1,11 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEFTIT</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetFit Pro Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="loading-screen" class="loading-overlay">
+            <div class="spinner"></div>
+            <h2>NetFit Pro Initializing...</h2>
+        </div>
+    </div>
+
+    <!-- Core Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+
+    <!-- Application Scripts -->
+    <script>
+        // GLOBAL APPLICATION CONFIGURATION
+        const APP_CONFIG = {
+            name: 'NetFit Pro',
+            version: '1.0.0',
+            debug: true
+        };
+
+        // COMPREHENSIVE LOGGING UTILITY
+        const Logger = {
+            log: (message) => {
+                if (APP_CONFIG.debug) {
+                    console.log(`[NetFit Pro] ${message}`);
+                }
+            },
+            error: (message) => {
+                console.error(`[NetFit Pro ERROR] ${message}`);
+            }
+        };
+
+        // MAIN APPLICATION INITIALIZER
+        class NetFitApp {
+            constructor() {
+                this.initializeApplication();
+            }
+
+            async initializeApplication() {
+                try {
+                    // Simulate initialization steps
+                    await this.checkEnvironment();
+                    await this.loadComponents();
+                    await this.renderMainInterface();
+                } catch (error) {
+                    this.handleInitializationError(error);
+                }
+            }
+
+            async checkEnvironment() {
+                Logger.log('Checking system compatibility...');
+                
+                // Web3 Provider Check
+                if (typeof window.ethereum === 'undefined') {
+                    throw new Error('Web3 Provider Not Detected');
+                }
+
+                // Browser Compatibility
+                const isModernBrowser = 'Promise' in window && 'fetch' in window;
+                if (!isModernBrowser) {
+                    throw new Error('Unsupported Browser');
+                }
+
+                Logger.log('Environment check complete');
+            }
+
+            async loadComponents() {
+                Logger.log('Loading application components...');
+                
+                // Simulate component loading
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
+            async renderMainInterface() {
+                const appContainer = document.getElementById('app');
+                appContainer.innerHTML = `
+                    <header>
+                        <h1>NetFit Pro Platform</h1>
+                        <nav>
+                            <button id="connectWalletBtn">Connect Wallet</button>
+                        </nav>
+                    </header>
+                    <main id="mainContent">
+                        <section id="dashboardSection">
+                            <h2>Welcome to NetFit Pro</h2>
+                            <div id="walletStatus">
+                                <p>Connect your wallet to get started</p>
+                            </div>
+                        </section>
+                    </main>
+                `;
+
+                this.setupEventListeners();
+                this.hideLoadingScreen();
+            }
+
+            setupEventListeners() {
+                const connectWalletBtn = document.getElementById('connectWalletBtn');
+                connectWalletBtn.addEventListener('click', this.connectWallet.bind(this));
+            }
+
+            async connectWallet() {
+                try {
+                    if (window.ethereum) {
+                        const accounts = await window.ethereum.request({
+                            method: 'eth_requestAccounts'
+                        });
+
+                        const walletStatus = document.getElementById('walletStatus');
+                        walletStatus.innerHTML = `
+                            <p>Wallet Connected: ${this.formatAddress(accounts[0])}</p>
+                            <p>Balance: ${await this.getWalletBalance(accounts[0])} ETH</p>
+                        `;
+                    } else {
+                        this.showErrorModal('MetaMask not detected');
+                    }
+                } catch (error) {
+                    this.handleWalletError(error);
+                }
+            }
+
+            async getWalletBalance(address) {
+                const web3 = new Web3(window.ethereum);
+                const balanceWei = await web3.eth.getBalance(address);
+                return web3.utils.fromWei(balanceWei, 'ether');
+            }
+
+            formatAddress(address) {
+                return `${address.substring(0,6)}...${address.substring(address.length-4)}`;
+            }
+
+            showErrorModal(message) {
+                const modalHTML = `
+                    <div class="error-modal">
+                        <div class="modal-content">
+                            <h3>Error</h3>
+                            <p>${message}</p>
+                            <button onclick="this.closest('.error-modal').remove()">Close</button>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+            }
+
+            handleWalletError(error) {
+                Logger.error(`Wallet Connection Error: ${error.message}`);
+                this.showErrorModal(error.message || 'Wallet Connection Failed');
+            }
+
+            handleInitializationError(error) {
+                Logger.error(`Initialization Error: ${error.message}`);
+                const appContainer = document.getElementById('app');
+                appContainer.innerHTML = `
+                    <div class="error-screen">
+                        <h2>Initialization Failed</h2>
+                        <p>${error.message}</p>
+                        <button onclick="window.location.reload()">Retry</button>
+                    </div>
+                `;
+            }
+
+            hideLoadingScreen() {
+                const loadingScreen = document.getElementById('loading-screen');
+                loadingScreen.style.display = 'none';
+            }
+        }
+
+        // APPLICATION BOOTSTRAP
+        document.addEventListener('DOMContentLoaded', () => {
+            new NetFitApp();
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</body>
 </html>
