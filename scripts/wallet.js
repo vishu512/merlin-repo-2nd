@@ -25,17 +25,11 @@ class WalletManager {
                 return this.account;
             } catch (error) {
                 console.error("Wallet Connection Error", error);
-                Modals.show({
-                    type: 'error',
-                    message: 'Wallet Connection Failed'
-                });
+                this.showErrorModal('Wallet Connection Failed');
                 return null;
             }
         } else {
-            Modals.show({
-                type: 'warning',
-                message: 'MetaMask not detected'
-            });
+            this.showErrorModal('MetaMask not detected');
             return null;
         }
     }
@@ -57,6 +51,19 @@ class WalletManager {
             }
         });
         window.dispatchEvent(event);
+    }
+
+    showErrorModal(message) {
+        const modalHTML = `
+            <div class="error-modal">
+                <div class="modal-content">
+                    <h3>Error</h3>
+                    <p>${message}</p>
+                    <button onclick="this.closest('.error-modal').remove()">Close</button>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 }
 
